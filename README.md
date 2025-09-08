@@ -34,6 +34,7 @@ To learn more about the folder structure of an Astro project, refer to [our guid
 
 All commands are run from the root of the project, from a terminal:
 
+### Development (Vite/Astro)
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
 | `npm install`             | Installs dependencies                            |
@@ -42,6 +43,25 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+### Webflow Component Deployment (Webpack)
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm run deploy:components` | Deploy React components to Webflow library using custom webpack config |
+| `npm run deploy`          | Deploy entire site to Webflow Cloud              |
+
+## 🔧 Build System
+
+This project uses a **dual build system**:
+
+- **Vite (via Astro)** - For regular development and site builds
+- **Webpack** - Only for Webflow component library deployment
+
+The webpack configuration (`webpack.webflow.cjs`) is specifically designed to handle:
+- CSS modules with default import syntax
+- ES module compatibility
+- React/TypeScript compilation for Webflow
+- Devlink component integration
 
 ## 👀 Want to learn more?
 

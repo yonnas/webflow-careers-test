@@ -32,9 +32,7 @@ export function JobsPage({
         setError(null);
 
         const response = await fetch(
-          `http://localhost:4321/careers/api/greenhouse?ghSlug=${encodeURIComponent(
-            ghSlug
-          )}`
+          `/careers/api/greenhouse?ghSlug=${encodeURIComponent(ghSlug)}`
         );
 
         if (!response.ok) {

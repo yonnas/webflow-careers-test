@@ -40,7 +40,7 @@ export function JobApplicationForm({
     const fetchQuestions = async () => {
       try {
         const response = await fetch(
-          `/api/questions?ghSlug=${encodeURIComponent(
+          `careers/api/questions?ghSlug=${encodeURIComponent(
             ghSlug
           )}&jobId=${encodeURIComponent(jobId)}`
         );
@@ -106,7 +106,7 @@ export function JobApplicationForm({
         }
       });
 
-      const response = await fetch("/api/apply", {
+      const response = await fetch("careers/api/apply", {
         method: "POST",
         body: submitFormData,
       });
