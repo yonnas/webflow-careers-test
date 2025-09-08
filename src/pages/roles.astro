@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Section, Container, Block } from '../../devlink/_Builtin/Basic';
+import { JobsPage } from '../components/JobsPage/JobsPage';
+---
+
+<Layout> 
+    <Section tag="section">
+        <Container>
+            <Block>
+                <JobsPage client:load />
+            </Block>
+        </Container>
+    </Section>
+</Layout>

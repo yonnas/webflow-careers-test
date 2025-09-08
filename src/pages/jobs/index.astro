@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { JobsPage } from '../../components/JobsPage/JobsPage';
+
+// Get the ghSlug from URL params or default to 'webflow'
+const { url } = Astro;
+const searchParams = new URL(url).searchParams;
+const ghSlug = searchParams.get('ghSlug') || 'webflow';
+---
+
+<Layout title="Careers - Join Our Team">
+  <main class="min-h-screen bg-base-100">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+      <JobsPage ghSlug={ghSlug} client:load />
+    </div>
+  </main>
+</Layout>

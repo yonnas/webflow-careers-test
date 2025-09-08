@@ -1,0 +1,29 @@
+{
+  "cloud": {
+    "framework": "astro",
+    "project_id": "4369cfd1-e24c-4abf-a44d-d0017d09e8c5"
+  },
+  "devlink": {
+    "rootDir": "./devlink",
+    "cssModules": true,
+    "fileExtensions": {
+      "js": "jsx"
+    }
+  },
+  "telemetry": {
+    "global": {
+      "allowTelemetry": true,
+      "lastPrompted": 1757358105700,
+      "version": "1.8.40"
+    }
+  },
+  "library": {
+    "components": [
+      "./src/webflow-components/**/*.webflow.@(js|jsx|mjs|ts|tsx)"
+    ],
+    "name": "Careers",
+    "description": "Careers Components",
+    "id": "careers",
+    "bundleConfig": "./webpack.webflow.cjs"
+  }
+}

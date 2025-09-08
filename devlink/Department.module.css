@@ -1,0 +1,65 @@
+.jobs-dept_section {
+  display: flex;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid hsla(0, 0.00%, 0.00%, 1.00);
+}
+
+@media screen and (max-width: 767px) {
+  .jobs-dept_section {
+    flex-direction: column;
+  }
+}
+
+.jobs-dept_title {
+  width: 35%;
+  margin-bottom: 0em;
+  padding-right: 20px;
+  flex: 0 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .jobs-dept_title {
+    width: 100%;
+    margin-bottom: 0.4em;
+  }
+}
+
+.h3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+  font-family: 'WF Visual Sans';
+  font-size: 2.313rem;
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+@media screen and (max-width: 991px) {
+  .h3 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .h3 {
+    font-size: 1.625rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .h3 {
+    font-size: 1.4rem;
+  }
+}
+
+.jobs-container {
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .jobs-container {
+    flex-direction: column;
+  }
+}

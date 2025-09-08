@@ -1,0 +1,147 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { SimilarJobs } from '../../../components/SimilarJobs';
+import { JobApplicationForm } from '../../../components/JobApplicationForm';
+import { JobDescription } from '../../../components/JobDescription';
+import { JobDetailsSidebar } from '../../../components/JobDetailsSidebar';
+import { StickyApplyButton } from '../../../components/StickyApplyButton';
+import { ReadingProgress } from '../../../components/ReadingProgress';
+import {
+  fetchGreenhouseJob,
+  fetchDepartmentJobs,
+  decodeHtmlEntities,
+} from '../../../lib/greenhouse';
+
+export async function getStaticPaths() {
+  // This would typically fetch all job IDs from Greenhouse API
+  // For now, we'll return an empty array to let Astro handle dynamic routes
+  return [];
+}
+
+const { params } = Astro;
+const { ghSlug, id } = await params;
+
+if (!ghSlug || !id) {
+  return Astro.redirect('/404');
+}
+
+const job = await fetchGreenhouseJob(ghSlug, id);
+if (!job) {
+  return Astro.redirect('/404');
+}
+
+const departmentNames =
+  job.departments?.map((d) => d.name).filter(Boolean) ?? [];
+const updatedAt = job.updated_at
+  ? new Date(job.updated_at).toLocaleString()
+  : undefined;
+const decodedContent = job.content
+  ? decodeHtmlEntities(job.content)
+  : undefined;
+
+// Fetch similar jobs from the first department (if any)
+const firstDepartment = job.departments?.[0];
+const departmentJobs = firstDepartment
+  ? await fetchDepartmentJobs(ghSlug, firstDepartment.id)
+  : null;
+---
+
+<Layout title={`${job.title} - Careers`}>
+  <main class="min-h-screen bg-base-100 text-base-content">
+    <ReadingProgress client:load />
+    <div class="container mx-auto px-4 py-6 max-w-7xl">
+      <!-- Back Link -->
+      <div class="mb-6">
+        <a
+          href="/careers/roles"
+          class="btn btn-ghost btn-sm gap-2 text-base-content/70 hover:text-base-content"
+          aria-label="Back to job listings"
+        >
+          <span>←</span> Back to listings
+        </a>
+      </div>
+
+      <!-- Header with Key Info -->
+      <div class="mb-8">
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+          <div class="flex-1">
+            <h1 class="text-3xl lg:text-4xl font-bold mb-6 leading-tight">{job.title}</h1>
+            <div class="flex flex-wrap items-center gap-4 text-base-content/70">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                </svg>
+                <span>{job.location.name}</span>
+              </div>
+              {job.departments && job.departments.length > 0 && (
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>{job.departments.map(d => d.name).join(', ')}</span>
+                </div>
+              )}
+            </div>
+          </div>
+          
+          <!-- Quick Apply Button -->
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a
+              href="#job-application-form"
+              class="btn btn-primary btn-lg px-8"
+            >
+              Apply Now
+            </a>
+            <button class="btn btn-outline btn-lg px-6">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"></path>
+              </svg>
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-5 gap-8">
+        <!-- Main Content -->
+        <div class="xl:col-span-3 space-y-8">
+          <!-- Job Description Section -->
+          {decodedContent && <JobDescription content={decodedContent} client:load />}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="xl:col-span-2">
+          <div class="sticky top-8 space-y-6">
+            <JobDetailsSidebar job={job} content={decodedContent || ""} client:load />
+          </div>
+        </div>
+      </div>
+
+      <!-- Similar Jobs Section -->
+      {departmentJobs && (
+        <div class="mt-16">
+          <SimilarJobs
+            department={departmentJobs}
+            currentJobId={job.id}
+            ghSlug={ghSlug}
+            client:load
+          />
+        </div>
+      )}
+
+      <!-- Custom Application Form -->
+      <div id="job-application-form" class="mt-16">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold mb-2">Ready to Apply?</h2>
+            <p class="text-base-content/70">Join our team and make an impact</p>
+          </div>
+          <JobApplicationForm ghSlug={ghSlug} jobId={id} jobTitle={job.title} client:load />
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticky Apply Button -->
+    <StickyApplyButton ghSlug={ghSlug} jobId={id} jobTitle={job.title} client:load />
+  </main>
+</Layout>

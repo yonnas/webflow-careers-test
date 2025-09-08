@@ -1,0 +1,124 @@
+.styles__nav-wrapper {
+  background-color: var(--black-1787f112);
+}
+
+.styles__logo {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: auto;
+  bottom: auto;
+  z-index: 2;
+
+  display: flex;
+  height: 99px;
+  padding-right: 36px;
+  padding-left: 36px;
+  align-items: center;
+
+  background-color: hsla(0, 0.00%, 3.14%, 1.00);
+
+  color: hsla(0, 0.00%, 100.00%, 1.00);
+  line-height: 1;
+  text-decoration: none;
+}
+
+.styles__logo:global(.w--current) {
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .styles__logo {
+    position: static;
+    height: auto;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .styles__logo:global(.w--current) {
+    align-items: center;
+  }
+}
+
+.styles__logo-embed {
+  display: flex;
+  width: 136px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .styles__logo-embed {
+    width: 104px;
+  }
+}
+
+.styles__logo-text {
+  margin-left: 6px;
+  align-self: center;
+
+  font-size: 23px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+@media screen and (max-width: 767px) {
+  .styles__logo-text {
+    margin-left: 4px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .styles__logo-text {
+    font-size: 15px;
+  }
+}
+
+.styles__nav-menu {
+  display: flex;
+  overflow: auto;
+  height: 100px;
+  padding-right: 36px;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .styles__nav-menu {
+    height: 60px;
+    margin-left: 0px;
+    padding-right: 6px;
+    padding-left: 6px;
+    justify-content: flex-start;
+  }
+}
+
+.styles__tab-link {
+  padding: 12px;
+
+  transition: all 200ms ease;
+
+  color: #898989;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.styles__tab-link:hover {
+  color: hsla(0, 0.00%, 100.00%, 1.00);
+}
+
+.styles__tab-link:global(.w--current) {
+  color: hsla(0, 0.00%, 100.00%, 1.00);
+}
+
+.styles__tab-link:global(.w--current):focus-visible {
+  text-decoration: underline;
+}

@@ -1,0 +1,108 @@
+.notification_bar {
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--brand-boilerplate-components---color--webflow-blue);
+
+  transition: background-color 200ms ease;
+
+  color: hsla(0, 0.00%, 100.00%, 1.00);
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+
+.notification_bar:hover {
+  background-color: var(--brand-boilerplate-components---color--blue-600);
+}
+
+@media screen and (max-width: 991px) {
+  .notification_bar {
+    position: relative;
+    z-index: 999999;
+    font-size: 0.9375rem;
+  }
+}
+
+.container {
+  width: 90%;
+  max-width: 1280px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 479px) {
+  .container {
+    width: 85%;
+  }
+}
+
+.container.cc-notification_bar {
+  width: 97%;
+}
+
+@media screen and (max-width: 991px) {
+  .container.cc-notification_bar {
+    width: 100%;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .container.cc-notification_bar {
+    font-size: 0.875rem;
+  }
+}
+
+.notification_bar-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .notification_bar-flex {
+    flex-direction: row;
+    flex-wrap: wrap;
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .notification_bar-flex {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+.notification_bar-button {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 479px) {
+  .notification_bar-button {
+    align-self: flex-start;
+  }
+}
+
+.u-d-inline-block {
+  display: inline-block;
+}
+
+.button-icon_top-right {
+  position: relative;
+  display: inline-block;
+  margin-left: 0.75rem;
+  transition: transform 300ms cubic-bezier(.165, .84, .44, 1);
+}

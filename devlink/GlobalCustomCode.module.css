@@ -1,0 +1,23 @@
+.u-d-none {
+  display: none;
+}
+
+.u-global-css {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  right: auto;
+  bottom: auto;
+
+  display: none;
+}
+
+.u-global-js {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  right: auto;
+  bottom: auto;
+
+  display: none;
+}
