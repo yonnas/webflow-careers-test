@@ -21,7 +21,10 @@ export function JobBoardCard({
           {Array.isArray(locationName) ? locationName.join(", ") : locationName}
         </p>
         <div className="card-actions justify-end">
-          <a href={`/jobs/${ghSlug}/${id}`} className="btn btn-primary btn-sm">
+          <a
+            href={`/careers/jobs/${ghSlug}/${id}`}
+            className="btn btn-primary btn-sm"
+          >
             View Job
           </a>
         </div>

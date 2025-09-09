@@ -9,7 +9,10 @@ declare module "react" {
     interface IntrinsicElements {
       svg: React.SVGProps<SVGSVGElement>;
       path: React.SVGProps<SVGPathElement>;
-      textarea: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+      textarea: React.DetailedHTMLProps<
+        React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+        HTMLTextAreaElement
+      >;
     }
   }
 }

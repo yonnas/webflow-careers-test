@@ -1,11 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   parseJobDetailsFromContent,
   extractJobDetailsFromAboutRole,
   type JobDetails, // Import JobDetails interface
 } from "../lib/jobDetailsParser";
+
+// Type declarations for HTML elements
+declare module "react" {
+  namespace JSX {
+    interface IntrinsicElements {
+      thead: React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLTableSectionElement>,
+        HTMLTableSectionElement
+      >;
+      tbody: React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLTableSectionElement>,
+        HTMLTableSectionElement
+      >;
+      tr: React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLTableRowElement>,
+        HTMLTableRowElement
+      >;
+      th: React.DetailedHTMLProps<
+        React.ThHTMLAttributes<HTMLTableHeaderCellElement>,
+        HTMLTableHeaderCellElement
+      >;
+      td: React.DetailedHTMLProps<
+        React.TdHTMLAttributes<HTMLTableDataCellElement>,
+        HTMLTableDataCellElement
+      >;
+    }
+  }
+}
 
 interface JobDetailsSidebarProps {
   job: any; // The job object from Greenhouse API
@@ -150,8 +178,8 @@ export function JobDetailsSidebar({
                               country: JobDetails["compensation"]["countries"][0],
                               countryIndex: number
                             ) => (
-                              <>
-                                <tr key={`country-${countryIndex}`}>
+                              <React.Fragment key={`country-${countryIndex}`}>
+                                <tr>
                                   <td className="font-semibold text-base whitespace-nowrap">
                                     {country.name}
                                     {country.note && (
@@ -187,7 +215,7 @@ export function JobDetailsSidebar({
                                       </tr>
                                     )
                                   )}
-                              </>
+                              </React.Fragment>
                             )
                           )}
                         </tbody>

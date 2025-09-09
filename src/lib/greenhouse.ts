@@ -131,6 +131,55 @@ export async function fetchDepartmentJobs(
   }
 }
 
+export async function fetchAllJobs(ghSlug: string): Promise<GreenhouseJob[]> {
+  try {
+    // First, get all departments
+    const departmentsUrl = `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(
+      ghSlug
+    )}/departments/`;
+
+    const departmentsResponse = await fetch(departmentsUrl);
+    if (!departmentsResponse.ok) {
+      console.error(
+        `Greenhouse API error: ${departmentsResponse.status} ${departmentsResponse.statusText}`
+      );
+      return [];
+    }
+
+    const departmentsData = (await departmentsResponse.json()) as {
+      departments: any[];
+    };
+    const departments = departmentsData.departments || [];
+
+    // Fetch jobs from all departments
+    const allJobs: GreenhouseJob[] = [];
+
+    for (const department of departments) {
+      if (department.jobs && department.jobs.length > 0) {
+        // Fetch detailed job information for each job
+        for (const jobSummary of department.jobs) {
+          try {
+            const jobDetail = await fetchGreenhouseJob(
+              ghSlug,
+              jobSummary.id.toString()
+            );
+            if (jobDetail) {
+              allJobs.push(jobDetail);
+            }
+          } catch (error) {
+            console.error(`Error fetching job ${jobSummary.id}:`, error);
+          }
+        }
+      }
+    }
+
+    return allJobs;
+  } catch (error) {
+    console.error("Error fetching all jobs from Greenhouse:", error);
+    return [];
+  }
+}
+
 export function decodeHtmlEntities(text: string): string {
   // Server-side HTML entity decoding
   return text

@@ -1,6 +1,22 @@
 import type { GreenhouseDepartment } from "../lib/greenhouse";
 import { JobBoardCard } from "../app/webflow-components/JobBoardCard/JobBoardCard";
 
+// Type declarations for HTML elements
+declare module "react" {
+  namespace JSX {
+    interface IntrinsicElements {
+      ul: React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLUListElement>,
+        HTMLUListElement
+      >;
+      li: React.DetailedHTMLProps<
+        React.LiHTMLAttributes<HTMLLIElement>,
+        HTMLLIElement
+      >;
+    }
+  }
+}
+
 interface SimilarJobsProps {
   department: GreenhouseDepartment;
   currentJobId: number;

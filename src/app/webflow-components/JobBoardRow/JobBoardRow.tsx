@@ -22,7 +22,10 @@ export function JobBoardRow({
         </p>
       </div>
       <div className="ml-4">
-        <a href={`/jobs/${ghSlug}/${id}`} className="btn btn-primary btn-sm">
+        <a
+          href={`/careers/jobs/${ghSlug}/${id}`}
+          className="btn btn-primary btn-sm"
+        >
           View Job
         </a>
       </div>
