@@ -32,7 +32,7 @@ export function JobsPage({
         setError(null);
 
         const response = await fetch(
-          `/careers/api/greenhouse?ghSlug=${encodeURIComponent(ghSlug)}`
+          `/careers-portal/api/greenhouse?ghSlug=${encodeURIComponent(ghSlug)}`
         );
 
         if (!response.ok) {
@@ -152,7 +152,7 @@ export function JobsPage({
                         title={job.title}
                         location={job.location.name}
                         link={{
-                          href: `/careers/jobs/${ghSlug}/${job.id}`,
+                          href: `/careers-portal/jobs/${ghSlug}/${job.id}`,
                         }}
                       />
                     ))}
