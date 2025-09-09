@@ -7,7 +7,7 @@ import "../../src/layouts/globals.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -17,8 +17,33 @@ import "../../src/layouts/globals.css";
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
 		<title>Webflow Cloud - Astro Starter</title>
+		<script>
+			// Theme initialization script - runs before any other scripts
+			(function() {
+				try {
+					const theme = localStorage.getItem('theme') || 'light';
+					console.log("🚀 Initial theme loading:", theme);
+					document.documentElement.setAttribute('data-theme', theme);
+					document.documentElement.classList.add('theme-loaded');
+					
+					// Debug: Log CSS custom properties
+					const root = document.documentElement;
+					const computedStyle = getComputedStyle(root);
+					console.log("🎨 CSS Custom Properties:", {
+						'--fallback-b1': computedStyle.getPropertyValue('--fallback-b1'),
+						'--fallback-bc': computedStyle.getPropertyValue('--fallback-bc'),
+						'--b1': computedStyle.getPropertyValue('--b1'),
+						'--bc': computedStyle.getPropertyValue('--bc')
+					});
+				} catch (e) {
+					console.error("❌ Theme initialization error:", e);
+					// Fallback if localStorage is not available
+					document.documentElement.setAttribute('data-theme', 'light');
+				}
+			})();
+		</script>
 	</head>
-	<body>
+	<body class="bg-base-100 text-base-content transition-colors duration-300">
 		<DevLinkProvider client:load>
 			<slot />
 		</DevLinkProvider>

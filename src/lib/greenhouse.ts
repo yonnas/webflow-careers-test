@@ -1,4 +1,4 @@
-interface GreenhouseJob {
+export interface GreenhouseJob {
   id: number;
   title: string;
   content?: string;

@@ -3,6 +3,17 @@
 import { useState, useEffect } from "react";
 import type { GreenhouseQuestion } from "../lib/greenhouse";
 
+// Type declarations for SVG elements
+declare module "react" {
+  namespace JSX {
+    interface IntrinsicElements {
+      svg: React.SVGProps<SVGSVGElement>;
+      path: React.SVGProps<SVGPathElement>;
+      textarea: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+    }
+  }
+}
+
 interface JobApplicationFormProps {
   ghSlug: string;
   jobId: string;
@@ -167,7 +178,7 @@ export function JobApplicationForm({
                         value={
                           typeof currentValue === "string" ? currentValue : ""
                         }
-                        onChange={(e) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           handleInputChange(fieldName, e.target.value)
                         }
                         className="input input-bordered w-full focus:input-primary transition-all duration-200"
@@ -190,7 +201,7 @@ export function JobApplicationForm({
                         value={
                           typeof currentValue === "string" ? currentValue : ""
                         }
-                        onChange={(e) =>
+                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                           handleInputChange(fieldName, e.target.value)
                         }
                         className="textarea textarea-bordered w-full min-h-32 resize-y focus:textarea-primary transition-all duration-200 force-text-wrap"
@@ -217,7 +228,7 @@ export function JobApplicationForm({
                           type="file"
                           name={fieldName}
                           required={isRequired}
-                          onChange={(e) =>
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                             handleFileChange(fieldName, e.target.files)
                           }
                           className="file-input file-input-bordered w-full focus:file-input-primary transition-all duration-200"
@@ -246,7 +257,7 @@ export function JobApplicationForm({
                         value={
                           typeof currentValue === "string" ? currentValue : ""
                         }
-                        onChange={(e) =>
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                           handleInputChange(fieldName, e.target.value)
                         }
                         className="select select-bordered w-full focus:select-primary transition-all duration-200"
@@ -284,7 +295,7 @@ export function JobApplicationForm({
                         value={
                           typeof currentValue === "string" ? currentValue : ""
                         }
-                        onChange={(e) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           handleInputChange(fieldName, e.target.value)
                         }
                         className="input input-bordered w-full"
@@ -344,8 +355,8 @@ export function JobApplicationForm({
               viewBox="0 0 24 24"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeLinecap={"round" as const}
+                strokeLinejoin={"round" as const}
                 strokeWidth="2"
                 d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
@@ -369,8 +380,8 @@ export function JobApplicationForm({
               viewBox="0 0 24 24"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeLinecap={"round" as const}
+                strokeLinejoin={"round" as const}
                 strokeWidth="2"
                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
@@ -385,7 +396,7 @@ export function JobApplicationForm({
   }
 
   return (
-    <div className="bg-white rounded-xl border border-base-300 p-8 shadow-sm">
+    <div className="bg-base-100 rounded-xl border border-base-300 p-8 shadow-sm theme-card">
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
         {questions.length === 0 ? (
           <div className="text-center py-12">
@@ -397,8 +408,8 @@ export function JobApplicationForm({
                 className="stroke-current shrink-0 w-6 h-6"
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap={"round" as const}
+                  strokeLinejoin={"round" as const}
                   strokeWidth="2"
                   d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 ></path>
@@ -428,8 +439,8 @@ export function JobApplicationForm({
                     stroke="currentColor"
                   >
                     <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      strokeLinecap={"round" as const}
+                      strokeLinejoin={"round" as const}
                       strokeWidth={2}
                       d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                     />
@@ -462,8 +473,8 @@ export function JobApplicationForm({
                     stroke="currentColor"
                   >
                     <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      strokeLinecap={"round" as const}
+                      strokeLinejoin={"round" as const}
                       strokeWidth={2}
                       d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     />
@@ -498,8 +509,8 @@ export function JobApplicationForm({
                     stroke="currentColor"
                   >
                     <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      strokeLinecap={"round" as const}
+                      strokeLinejoin={"round" as const}
                       strokeWidth={2}
                       d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
                     />
@@ -523,7 +534,7 @@ export function JobApplicationForm({
               <div className="card-body">
                 <div className="form-control">
                   <button
-                    type="submit"
+                    type={"submit" as const}
                     disabled={submitting}
                     className="btn btn-primary btn-lg w-full"
                   >
@@ -542,8 +553,8 @@ export function JobApplicationForm({
                           stroke="currentColor"
                         >
                           <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                            strokeLinecap={"round" as const}
+                            strokeLinejoin={"round" as const}
                             strokeWidth={2}
                             d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                           />

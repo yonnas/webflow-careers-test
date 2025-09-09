@@ -44,7 +44,7 @@ export function JobDescription({
       {/* Job Description Section */}
       {parsedContent.jobDescription &&
         parsedContent.jobDescription.trim().length > 0 && (
-          <div className="bg-white rounded-xl border border-base-300 p-8 shadow-sm">
+          <div className="bg-base-100 rounded-xl border border-base-300 p-8 shadow-sm theme-card">
             <h2 className="text-2xl font-bold mb-6 text-base-content">
               Job Description
             </h2>
@@ -54,7 +54,7 @@ export function JobDescription({
 
       {/* About the Role Section */}
       {parsedContent.aboutRole && parsedContent.aboutRole.trim().length > 0 && (
-        <div className="bg-white rounded-xl border border-base-300 p-8 shadow-sm">
+        <div className="bg-base-100 rounded-xl border border-base-300 p-8 shadow-sm theme-card">
           <h2 className="text-2xl font-bold mb-6 text-base-content">
             About the Role
           </h2>
@@ -64,7 +64,7 @@ export function JobDescription({
 
       {/* About You Section */}
       {parsedContent.aboutYou && parsedContent.aboutYou.trim().length > 0 && (
-        <div className="bg-white rounded-xl border border-base-300 p-8 shadow-sm">
+        <div className="bg-base-100 rounded-xl border border-base-300 p-8 shadow-sm theme-card">
           <h2 className="text-2xl font-bold mb-6 text-base-content">
             About You
           </h2>
@@ -115,7 +115,7 @@ export function JobDescription({
             parsedContent[section as keyof typeof parsedContent].trim().length >
               0
         ) && (
-          <div className="bg-white rounded-xl border border-base-300 p-8 shadow-sm">
+          <div className="bg-base-100 rounded-xl border border-base-300 p-8 shadow-sm theme-card">
             <h2 className="text-2xl font-bold mb-6 text-base-content">
               Job Description
             </h2>

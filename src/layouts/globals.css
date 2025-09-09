@@ -1,8 +1,15 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-.jobs-listing:last-child {
-  border-bottom: 0;
+/* Theme transition support */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Ensure proper theme inheritance */
+html {
+  color-scheme: light dark;
 }
 
 /* Custom heading spacing adjustments */
@@ -28,4 +35,88 @@ h5 {
 
 h6 {
   margin-bottom: 0.5rem !important;
+}
+
+/* Job listing specific styles */
+.jobs-listing:last-child {
+  border-bottom: 0;
+}
+
+/* Enhanced theme-aware components */
+.theme-card {
+  @apply bg-base-100 border border-base-300 shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+.theme-button {
+  @apply transition-all duration-200 hover:scale-105 active:scale-95;
+}
+
+/* Dark mode specific enhancements */
+[data-theme="dark"] .theme-card {
+  @apply border-base-300/50;
+}
+
+[data-theme="dark"] .theme-button {
+  @apply shadow-lg;
+}
+
+/* Light mode specific enhancements */
+[data-theme="light"] .theme-card {
+  @apply shadow-sm;
+}
+
+/* Improved contrast for better accessibility */
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* Force DaisyUI theme variables to override Webflow styles */
+[data-theme="dark"] {
+  --fallback-b1: #111827 !important;
+  --fallback-b2: #1f2937 !important;
+  --fallback-b3: #374151 !important;
+  --fallback-bc: #f9fafb !important;
+  --fallback-p: #60a5fa !important;
+  --fallback-pc: #1e3a8a !important;
+  --fallback-s: #a78bfa !important;
+  --fallback-sc: #4c1d95 !important;
+  --fallback-a: #22d3ee !important;
+  --fallback-ac: #0e7490 !important;
+  --fallback-n: #1f2937 !important;
+  --fallback-nc: #f9fafb !important;
+  --fallback-in: #60a5fa !important;
+  --fallback-inc: #1e3a8a !important;
+  --fallback-su: #34d399 !important;
+  --fallback-suc: #064e3b !important;
+  --fallback-wa: #fbbf24 !important;
+  --fallback-wac: #78350f !important;
+  --fallback-er: #f87171 !important;
+  --fallback-erc: #7f1d1d !important;
+}
+
+[data-theme="light"] {
+  --fallback-b1: #ffffff !important;
+  --fallback-b2: #f9fafb !important;
+  --fallback-b3: #f3f4f6 !important;
+  --fallback-bc: #374151 !important;
+  --fallback-p: #3b82f6 !important;
+  --fallback-pc: #ffffff !important;
+  --fallback-s: #8b5cf6 !important;
+  --fallback-sc: #ffffff !important;
+  --fallback-a: #06b6d4 !important;
+  --fallback-ac: #ffffff !important;
+  --fallback-n: #374151 !important;
+  --fallback-nc: #f9fafb !important;
+  --fallback-in: #3b82f6 !important;
+  --fallback-inc: #ffffff !important;
+  --fallback-su: #10b981 !important;
+  --fallback-suc: #ffffff !important;
+  --fallback-wa: #f59e0b !important;
+  --fallback-wac: #ffffff !important;
+  --fallback-er: #ef4444 !important;
+  --fallback-erc: #ffffff !important;
 }
